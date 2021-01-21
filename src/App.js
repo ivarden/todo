@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { todoContext } from "./todoContext";
+import TodoItem from "./TodoItems";
+import AddTodo from "./AddTodo";
+import AddCategory from "./AddCategory";
+import CategoryItem from "./CategoryItems";
+// import FormSelect from "./FormSelect";
 
-function App() {
+const App = () => {
+  const { todos } = useContext(todoContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AddCategory />
+      <CategoryItem />
+      {/* <FormSelect /> */}
+      <AddTodo />
+      <TodoItem />
+      {!todos.length && <h3>No any todo!</h3>}
     </div>
   );
-}
+};
 
 export default App;

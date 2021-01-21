@@ -1,0 +1,49 @@
+.todo {
+  &__wrap {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    padding: 0px 10px 0px 0px;
+    padding: 5px 10px 0px 0px;
+    border-bottom: 1px solid gray;
+    // border: 1px solid gray;
+  }
+
+  &__text {
+    align-self: center;
+    padding: 5px 5px 5px 0;
+    width: 100%;
+    &_done {
+      text-decoration: line-through;
+    }
+  }
+
+  &__button {
+    box-sizing: border-box;
+    & i {
+      font-size: 24px;
+      cursor: pointer;
+      &:hover {
+        transition: 0.5s;
+        font-size: 18px;
+      }
+    }
+    &_wrap {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: space-between;
+      align-items: center;
+      width: 50px;
+      padding: 10px;
+      margin-right: 10px;
+      background-color: lightgrey;
+    }
+  }
+  &_delete {
+    &:hover {
+      color: red;
+    }
+  }
+  &_done {
+  }
+}
