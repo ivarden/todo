@@ -2,20 +2,18 @@ import React, { useContext, useState } from "react";
 import { todoContext } from "./todoContext";
 
 const AddCategory = () => {
-  const { addCategory, dispatchCategory, handleSelectedCategory } = useContext(
-    todoContext
-  );
+  const { handleAddCategory, handleSelectedCategory } = useContext(todoContext);
   const [category, setCategory] = useState({ id: null, text: "" });
-  const formHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const id = Date.now();
-    addCategory({ id: id, text: category }, dispatchCategory);
+    handleAddCategory({ id: id, text: category });
     handleSelectedCategory(id);
     setCategory({ id: null, text: "" });
   };
   return (
     <div>
-      <form onSubmit={formHandler}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="category"

@@ -6,23 +6,25 @@ const CategoryItem = () => {
   const {
     handleSelectedCategory,
     categorys,
-    selectedCategory,
     todos,
-    deleteCategory,
-    dispatchCategory,
+    selectedTodos,
+    handleDeleteCategory,
   } = useContext(todoContext);
 
   const clickDeleteHandler = (e, id) => {
     e.stopPropagation();
-    deleteCategory(id, dispatchCategory);
+    handleDeleteCategory(id);
   };
 
-  const DeleteCategory = (id) => {
-    if (id === null) return "";
+  const DeleteCategory = ({ id }) => {
+    if (id === 1) return "";
+
     const todosCount = todos.filter(
-      (todo) => Number(todo.category) === Number(id)
+      (todo) => Number(todo.category.id) === Number(id)
     ).length;
-    return todosCount ? (
+    console.log("todosCount", todosCount);
+    // return selectedTodos.length ? (
+    return todosCount.length ? (
       ""
     ) : (
       <div
@@ -40,15 +42,14 @@ const CategoryItem = () => {
         <div
           onClick={() => handleSelectedCategory(category.id)}
           className={
-            // Number(category.id) === Number(selectedCategory)
             category.selected
               ? `${styles.category__wrap} ${styles.category__wrap__active}`
               : styles.category__wrap
           }
-          key={category.id || category.text}
+          key={category.id}
         >
           <div className={styles.category__text}>{category.text}</div>
-          {DeleteCategory(category.id)}
+          <DeleteCategory id={category.id} />
         </div>
       ))}
     </div>

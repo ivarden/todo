@@ -4,20 +4,18 @@ import styles from "./TodoItems.module.scss";
 
 const TodoItem = () => {
   const {
-    // categorys,
     selectedTodos,
-    toggleTodo,
-    deleteTodo,
-    dispatchTodo,
+    handleToggleTodo,
+    handleDeleteTodo,
   } = useContext(todoContext);
 
   const clickDoneHandle = (id) => {
-    toggleTodo(id, dispatchTodo);
+    handleToggleTodo(id);
   };
 
   const clickDeleteHandler = (e, id) => {
     e.stopPropagation();
-    deleteTodo(id, dispatchTodo);
+    handleDeleteTodo(id);
   };
 
   return (

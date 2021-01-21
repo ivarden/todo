@@ -3,8 +3,7 @@ import { todoContext } from "./todoContext";
 
 const AddTodo = () => {
   const {
-    addTodo,
-    dispatchTodo,
+    handleAddTodo,
     categorys,
     handleSelectedCategory,
     selectedCategory,
@@ -19,12 +18,12 @@ const AddTodo = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo(todo, selectedCategory, color, dispatchTodo);
+    handleAddTodo(todo, selectedCategory, color);
     setTodo("");
     setColor("");
   };
@@ -49,11 +48,14 @@ const AddTodo = () => {
   //   { id: 7, color: "#fb8500" },
   //   { id: 8, color: "#d90429" },
   // ];
-
+  // console.log("selectedCategory", selectedCategory)
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <select value={selectedCategory || ""} onChange={handleCategoryChange}>
+        <select
+          value={selectedCategory.id || ""}
+          onChange={handleCategoryChange}
+        >
           {categorys.map((category) => (
             <option key={category.id} value={category.id}>
               {category.text}

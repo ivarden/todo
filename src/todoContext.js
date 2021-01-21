@@ -20,38 +20,54 @@ const TodoContextProvider = ({ children }) => {
     initialState.categorys
   );
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(categorys[0]);
   const [selectedTodos, setSelectedTodos] = useState(todos);
 
   const handleSelectedCategory = useCallback((id) => {
     selectCategory(id, dispatchCategory);
-    // setSelectedCategory(id);
   }, []);
+
+  const handleDeleteCategory = useCallback(
+    (id) => {
+      deleteCategory(id, dispatchCategory);
+      handleSelectedCategory(categorys[0].id);
+    },
+    [handleSelectedCategory, categorys]
+  );
+
+  const handleAddCategory = useCallback(
+    (category_) => addCategory(category_, dispatchCategory),
+    []
+  );
+  const handleToggleTodo = useCallback(
+    (id) => toggleTodo(id, dispatchTodo),
+    []
+  );
+  const handleDeleteTodo = useCallback(
+    (id) => deleteTodo(id, dispatchTodo),
+    []
+  );
+  const handleAddTodo = useCallback(
+    (todo, selectedCategory, color) =>
+      addTodo(todo, selectedCategory, color, dispatchTodo),
+    []
+  );
 
   const selectedCategory_ = useCallback(() => {
     const activeCategory = categorys.filter(
       (category) => category.selected === true
-    )[0].id;
-    console.log(activeCategory);
-    setSelectedCategory(activeCategory);
-    setSelectedTodos(
-      todos.filter(
-        (todo) => Number(todo.category) === Number(activeCategory)
-      )
-    );
-  }, [categorys, todos]);
+    )[0];
 
-  const handleSelectedTodos = useCallback(() => {
-    // if (Boolean(selectedCategory)) {
-      setSelectedTodos(
-        todos.filter(
-          (todo) => Number(todo.category) === Number(selectedCategory)
-        )
+    setSelectedCategory(activeCategory);
+    if (activeCategory.id === 1) {
+      setSelectedTodos(todos);
+    } else {
+      const sortedTodos = todos.filter(
+        (todo) => Number(todo.category.id) === Number(activeCategory.id)
       );
-    // } else {
-    //   setSelectedTodos(todos);
-    // }
-  }, [todos, selectedCategory]);
+      setSelectedTodos(sortedTodos);
+    }
+  }, [categorys, todos]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -61,33 +77,19 @@ const TodoContextProvider = ({ children }) => {
     selectedCategory_();
   }, [todos, categorys, selectedCategory_]);
 
-  // useEffect(() => {
-  //   // handleSelectedTodos();
-  //   selectedCategory_();
-  // }, [
-  //   todos,
-  //   categorys,
-  //   // selectedCategory,
-  //   // handleSelectedTodos,
-  //   selectedCategory_,
-  // ]);
-
   return (
     <todoContext.Provider
       value={{
-        selectedTodos,
         todos,
-        addTodo,
-        toggleTodo,
-        deleteTodo,
-        dispatchTodo,
         categorys,
-        addCategory,
-        deleteCategory,
-        dispatchCategory,
+        selectedTodos,
         selectedCategory,
-        setSelectedCategory,
+        handleAddTodo,
+        handleToggleTodo,
+        handleDeleteTodo,
+        handleAddCategory,
         handleSelectedCategory,
+        handleDeleteCategory,
       }}
     >
       {children}
