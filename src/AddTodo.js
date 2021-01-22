@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { todoContext } from "./todoContext";
+import styles from "./AddTodo.module.scss";
 
 const AddTodo = () => {
   const {
@@ -37,7 +38,7 @@ const AddTodo = () => {
     { id: 7, color: "Lightgreen" },
     { id: 8, color: "Brown" },
   ];
-  
+
   // const colors = [
   //   { id: 1, color: "#ef476f" },
   //   { id: 2, color: "#06d6a0" },
@@ -50,12 +51,9 @@ const AddTodo = () => {
   // ];
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <select
-          value={selectedCategory.id}
-          onChange={handleCategoryChange}
-        >
+    <div className={styles.wrap}>
+      <form onSubmit={handleSubmit} className={styles.wrap__form}>
+        <select value={selectedCategory.id} onChange={handleCategoryChange}>
           {categorys.map((category) => (
             <option key={category.id} value={category.id}>
               {category.text}
@@ -77,6 +75,7 @@ const AddTodo = () => {
         <input
           type="text"
           name="todo"
+          placeholder="add new todo"
           value={todo}
           onChange={(e) => {
             setTodo(e.target.value);

@@ -31,7 +31,7 @@ const CategoryItems = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrap}>
       {categorys.map((category) => (
         <div
           onClick={() => handleSelectedCategory(category.id)}

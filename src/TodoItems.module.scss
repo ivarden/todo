@@ -1,12 +1,9 @@
 .todo {
   &__wrap {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     justify-content: space-between;
-    padding: 0px 10px 0px 0px;
-    padding: 5px 10px 0px 0px;
     border-bottom: 1px solid gray;
-    // border: 1px solid gray;
   }
 
   &__text {
@@ -21,7 +18,7 @@
   &__button {
     box-sizing: border-box;
     & i {
-      font-size: 24px;
+      font-size: 20px;
       cursor: pointer;
       &:hover {
         transition: 0.5s;
@@ -43,7 +40,5 @@
     &:hover {
       color: red;
     }
-  }
-  &_done {
   }
 }

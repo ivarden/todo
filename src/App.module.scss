@@ -1,0 +1,52 @@
+.wrap {
+  display: flex;
+  padding: 5px;
+  
+  &__category {
+    flex: 1 0 30%;
+    padding: 0 5px;
+    &__wrap {
+      max-height: 95vh;
+      overflow: scroll;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none;
+    }
+  }
+
+  &__todo {
+    flex: 1 1 70%;
+    padding: 0 5px;
+    &__wrap {
+      max-height: 95vh;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    padding: 0;
+
+    &__category {
+      padding: 0;
+      max-height: 30vh;
+      overflow: scroll;
+      &__wrap {
+        max-height: 25vh;
+        overflow: scroll;
+      }
+    }
+
+    &__todo {
+      max-height: 70vh;
+      overflow: scroll;
+      padding: 0;
+      &__wrap {
+        max-height: 55vh;
+        overflow: scroll;
+      }
+    }
+  }
+}

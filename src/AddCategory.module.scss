@@ -1,0 +1,54 @@
+.wrap {
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    & input,
+    button {
+      padding: 5px;
+      min-height: 25px;
+      margin-right: 5px;
+    }
+    & input {
+      padding: 5px;
+      min-height: 25px;
+      flex: 1 1 100%;
+    }
+    & button {
+      padding: 5px;
+      min-height: 25px;
+      flex: 1 0 30%;
+      margin-right: 0;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      flex-direction: column;
+      & input {
+        padding: 5px;
+        min-height: 25px;
+        flex: 1 1 100%;
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+      & button {
+        padding: 5px;
+        min-height: 25px;
+        flex: 1 1 100%;
+        margin-right: 0;
+        cursor: pointer;
+      }
+    }
+    @media (max-width: 500px) {
+      // margin-bottom: 5px;
+      flex-direction: column;
+      & button {
+        padding: 5px;
+        min-height: 25px;
+        flex: 1 1 100%;
+        margin-right: 0;
+        // margin-bottom: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
