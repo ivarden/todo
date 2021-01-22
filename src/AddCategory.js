@@ -2,14 +2,13 @@ import React, { useContext, useState } from "react";
 import { todoContext } from "./todoContext";
 
 const AddCategory = () => {
-  const { handleAddCategory, handleSelectedCategory } = useContext(todoContext);
-  const [category, setCategory] = useState({ id: null, text: "" });
+  const { handleAddCategory } = useContext(todoContext);
+  const [category, setCategory] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = Date.now();
-    handleAddCategory({ id: id, text: category });
-    handleSelectedCategory(id);
-    setCategory({ id: null, text: "" });
+    handleAddCategory({ id: Date.now(), text: category });
+    setCategory("");
   };
   return (
     <div>
@@ -17,7 +16,7 @@ const AddCategory = () => {
         <input
           type="text"
           name="category"
-          value={category.text}
+          value={category}
           onChange={(e) => {
             setCategory(e.target.value);
           }}

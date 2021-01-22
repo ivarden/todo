@@ -26,6 +26,14 @@ const TodoContextProvider = ({ children }) => {
   const handleSelectedCategory = useCallback((id) => {
     selectCategory(id, dispatchCategory);
   }, []);
+  
+  const handleAddCategory = useCallback(
+    (category_) => {
+      addCategory(category_, dispatchCategory);
+      handleSelectedCategory(category_.id);
+    },
+    [handleSelectedCategory]
+  );
 
   const handleDeleteCategory = useCallback(
     (id) => {
@@ -35,30 +43,29 @@ const TodoContextProvider = ({ children }) => {
     [handleSelectedCategory, categorys]
   );
 
-  const handleAddCategory = useCallback(
-    (category_) => addCategory(category_, dispatchCategory),
-    []
-  );
-  const handleToggleTodo = useCallback(
-    (id) => toggleTodo(id, dispatchTodo),
-    []
-  );
-  const handleDeleteTodo = useCallback(
-    (id) => deleteTodo(id, dispatchTodo),
-    []
-  );
   const handleAddTodo = useCallback(
     (todo, selectedCategory, color) =>
       addTodo(todo, selectedCategory, color, dispatchTodo),
     []
   );
 
-  const selectedCategory_ = useCallback(() => {
+  const handleToggleTodo = useCallback(
+    (id) => toggleTodo(id, dispatchTodo),
+    []
+  );
+
+  const handleDeleteTodo = useCallback(
+    (id) => deleteTodo(id, dispatchTodo),
+    []
+  );
+
+  const selectedCategoryAndTodos = useCallback(() => {
     const activeCategory = categorys.filter(
       (category) => category.selected === true
     )[0];
 
     setSelectedCategory(activeCategory);
+
     if (activeCategory.id === 1) {
       setSelectedTodos(todos);
     } else {
@@ -74,8 +81,8 @@ const TodoContextProvider = ({ children }) => {
       "todoApp",
       JSON.stringify({ categorys: categorys, todos: todos })
     );
-    selectedCategory_();
-  }, [todos, categorys, selectedCategory_]);
+    selectedCategoryAndTodos();
+  }, [todos, categorys, selectedCategoryAndTodos]);
 
   return (
     <todoContext.Provider

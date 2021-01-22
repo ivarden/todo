@@ -2,38 +2,32 @@ import React, { useContext } from "react";
 import { todoContext } from "./todoContext";
 import styles from "./CategoryItems.module.scss";
 
-const CategoryItem = () => {
+const CategoryItems = () => {
   const {
     handleSelectedCategory,
     categorys,
     todos,
-    selectedTodos,
     handleDeleteCategory,
   } = useContext(todoContext);
 
-  const clickDeleteHandler = (e, id) => {
-    e.stopPropagation();
-    handleDeleteCategory(id);
-  };
-
   const DeleteCategory = ({ id }) => {
-    if (id === 1) return "";
+    const todos_ = todos.filter((todo) => todo.category.id === id).length;
 
-    const todosCount = todos.filter(
-      (todo) => Number(todo.category.id) === Number(id)
-    ).length;
-    console.log("todosCount", todosCount);
-    // return selectedTodos.length ? (
-    return todosCount.length ? (
-      ""
-    ) : (
-      <div
-        onClick={(e) => clickDeleteHandler(e, id)}
-        className={styles.category__button}
-      >
-        <i className="far fa-window-close"></i>
-      </div>
-    );
+    if (id === 1 || todos_) {
+      return "";
+    } else {
+      return (
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDeleteCategory(id);
+          }}
+          className={styles.category__button}
+        >
+          <i className="far fa-window-close"></i>
+        </div>
+      );
+    }
   };
 
   return (
@@ -55,4 +49,4 @@ const CategoryItem = () => {
     </div>
   );
 };
-export default CategoryItem;
+export default CategoryItems;
