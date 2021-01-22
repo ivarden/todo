@@ -39,14 +39,21 @@
       }
     }
     @media (max-width: 500px) {
-      // margin-bottom: 5px;
+      margin-bottom: 2px;
       flex-direction: column;
+      & input {
+        padding: 5px;
+        min-height: 25px;
+        flex: 1 1 100%;
+        margin-right: 0;
+        margin-bottom: 2px;
+      }
+
       & button {
         padding: 5px;
         min-height: 25px;
         flex: 1 1 100%;
         margin-right: 0;
-        // margin-bottom: 5px;
         cursor: pointer;
       }
     }
