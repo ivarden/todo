@@ -14,7 +14,7 @@ const CategoryItems = () => {
     const todos_ = todos.filter((todo) => todo.category.id === id).length;
 
     if (id === 1 || todos_) {
-      return "";
+      return <div className={styles.category__count}>{id === 1 ? todos.length : todos_}</div>;
     } else {
       return (
         <div
