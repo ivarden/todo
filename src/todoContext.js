@@ -1,11 +1,10 @@
 import React, { useReducer, useEffect, useState, useCallback } from "react";
+import { todoReducer, categoryReducer } from "./todoRedusers";
 import {
-  todoReducer,
   initialState,
   addTodo,
   toggleTodo,
   deleteTodo,
-  categoryReducer,
   addCategory,
   selectCategory,
   deleteCategory,
@@ -26,7 +25,7 @@ const TodoContextProvider = ({ children }) => {
   const handleSelectedCategory = useCallback((id) => {
     selectCategory(id, dispatchCategory);
   }, []);
-  
+
   const handleAddCategory = useCallback(
     (category_) => {
       addCategory(category_, dispatchCategory);

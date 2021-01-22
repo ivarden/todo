@@ -18,7 +18,6 @@ const AddTodo = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -38,6 +37,7 @@ const AddTodo = () => {
     { id: 7, color: "Lightgreen" },
     { id: 8, color: "Brown" },
   ];
+  
   // const colors = [
   //   { id: 1, color: "#ef476f" },
   //   { id: 2, color: "#06d6a0" },
@@ -48,12 +48,12 @@ const AddTodo = () => {
   //   { id: 7, color: "#fb8500" },
   //   { id: 8, color: "#d90429" },
   // ];
-  // console.log("selectedCategory", selectedCategory)
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <select
-          value={selectedCategory.id || ""}
+          value={selectedCategory.id}
           onChange={handleCategoryChange}
         >
           {categorys.map((category) => (

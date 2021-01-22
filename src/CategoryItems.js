@@ -4,9 +4,9 @@ import styles from "./CategoryItems.module.scss";
 
 const CategoryItems = () => {
   const {
-    handleSelectedCategory,
-    categorys,
     todos,
+    categorys,
+    handleSelectedCategory,
     handleDeleteCategory,
   } = useContext(todoContext);
 
