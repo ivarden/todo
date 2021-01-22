@@ -39,17 +39,6 @@ const AddTodo = () => {
     { id: 8, color: "Brown" },
   ];
 
-  // const colors = [
-  //   { id: 1, color: "#ef476f" },
-  //   { id: 2, color: "#06d6a0" },
-  //   { id: 3, color: "#118ab2" },
-  //   { id: 4, color: "#073b4c" },
-  //   { id: 5, color: "#3a86ff" },
-  //   { id: 6, color: "#ffb703" },
-  //   { id: 7, color: "#fb8500" },
-  //   { id: 8, color: "#d90429" },
-  // ];
-
   return (
     <div className={styles.wrap}>
       <form onSubmit={handleSubmit} className={styles.wrap__form}>
