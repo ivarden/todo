@@ -25,7 +25,7 @@ const AddCategory = () => {
         />
 
         <button type="submit" disabled={category.length < 2}>
-          Add category
+          Add
         </button>
       </form>
     </div>

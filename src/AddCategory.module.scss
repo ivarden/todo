@@ -20,39 +20,31 @@
       flex: 1 0 30%;
       margin-right: 0;
       cursor: pointer;
+      font-weight: bold;
     }
     @media (max-width: 900px) {
-      flex-direction: column;
       & input {
         padding: 5px;
         min-height: 25px;
-        flex: 1 1 100%;
-        margin-right: 0;
-        margin-bottom: 5px;
+        flex: 1 1 50%;
       }
       & button {
         padding: 5px;
         min-height: 25px;
-        flex: 1 1 100%;
+        flex: 1 1 50%;
         margin-right: 0;
         cursor: pointer;
       }
     }
     @media (max-width: 500px) {
       margin-bottom: 2px;
-      flex-direction: column;
       & input {
-        padding: 5px;
-        min-height: 25px;
-        flex: 1 1 100%;
-        margin-right: 0;
-        margin-bottom: 2px;
+        flex: 1 1 80%;
+        margin-right: 1px;
       }
 
       & button {
-        padding: 10px;
-        min-height: 25px;
-        flex: 1 1 100%;
+        flex: 1 0 20%;
         margin-right: 0;
         cursor: pointer;
       }

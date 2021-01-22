@@ -72,7 +72,7 @@ const AddTodo = () => {
         />
 
         <button type="submit" disabled={todo.length < 2}>
-          Add todo
+          Add
         </button>
       </form>
     </div>
