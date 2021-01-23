@@ -1,14 +1,14 @@
 import React, { useReducer, useEffect, useState, useCallback } from "react";
 import { todoReducer, categoryReducer } from "./todoRedusers";
+import { initialState } from "./todoStore";
 import {
-  initialState,
   addTodo,
   toggleTodo,
   deleteTodo,
   addCategory,
   selectCategory,
   deleteCategory,
-} from "./todoStore";
+} from "./todoActions";
 
 export const todoContext = React.createContext({});
 

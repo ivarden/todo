@@ -55,7 +55,6 @@ const AddTodo = () => {
           onChange={handleColorChange}
           style={{
             backgroundColor: `${color}`,
-            fontWeight: "bold",
           }}
         >
           <option key="default" value="Bisque">
