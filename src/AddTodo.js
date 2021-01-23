@@ -11,7 +11,7 @@ const AddTodo = () => {
   } = useContext(todoContext);
 
   const [todo, setTodo] = useState("");
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("Bisque");
 
   const handleCategoryChange = (event) => {
     handleSelectedCategory(event.target.value);
@@ -25,18 +25,18 @@ const AddTodo = () => {
     e.preventDefault();
     handleAddTodo(todo, selectedCategory, color);
     setTodo("");
-    setColor("");
+    setColor("Bisque");
   };
 
   const colors = [
     { id: 1, color: "Yellow" },
     { id: 2, color: "Orange" },
-    { id: 3, color: "Red" },
+    { id: 3, color: "OrangeRed" },
     { id: 4, color: "Pink" },
     { id: 5, color: "Violet" },
     { id: 6, color: "Skyblue" },
     { id: 7, color: "Lightgreen" },
-    { id: 8, color: "Brown" },
+    { id: 8, color: "YellowGreen" },
   ];
 
   return (
@@ -50,9 +50,16 @@ const AddTodo = () => {
           ))}
         </select>
 
-        <select value={color} onChange={handleColorChange}>
-          <option key="1" value="">
-            Gray
+        <select
+          value={color}
+          onChange={handleColorChange}
+          style={{
+            backgroundColor: `${color}`,
+            fontWeight: "bold",
+          }}
+        >
+          <option key="default" value="Bisque">
+            Bisque
           </option>
           {colors.map((color_) => (
             <option key={color_.id} value={color_.color}>
