@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import TodoContextProvider from "./todoContext";
+import TodoContextProvider from "./TodoContext";
 
 import "./index.css";
 import App from "./App";

@@ -5,14 +5,17 @@ export const ACTION_TYPE = {
   ADD_CATEGORY: "ADD_CATEGORY",
   SELECT_CATEGORY: "SELECT_CATEGORY",
   DELETE_CATEGORY: "DELETE_CATEGORY",
+  ADD_COLOR: "ADD_COLOR",
+  SELECT_COLOR: "SELECT_COLOR",
+  DELETE_COLOR: "DELETE_COLOR",
 };
 
 export const ACTION_CREATOR = {
-  addTodo: (text, category, color) => ({
+  addTodo: (todo, category, color) => ({
     type: ACTION_TYPE.ADD_TODO,
     payload: {
       id: Date.now(),
-      text: text,
+      value: todo,
       category: category,
       color: color,
       compleated: false,
@@ -20,15 +23,26 @@ export const ACTION_CREATOR = {
   }),
   toggleTodo: (id) => ({ type: ACTION_TYPE.TOGGLE_TODO, payload: id }),
   deleteTodo: (id) => ({ type: ACTION_TYPE.DELETE_TODO, payload: id }),
-  addCategory: ({ id, text }) => ({
+
+  addCategory: ({ id, value }) => ({
     type: ACTION_TYPE.ADD_CATEGORY,
-    payload: { id: id, text: text, selected: false },
+    payload: { id, value, selected: false },
   }),
   selectCategory: (id) => ({
     type: ACTION_TYPE.SELECT_CATEGORY,
     payload: id,
   }),
   deleteCategory: (id) => ({ type: ACTION_TYPE.DELETE_CATEGORY, payload: id }),
+
+  addColor: ({ id, value }) => ({
+    type: ACTION_TYPE.ADD_COLOR,
+    payload: { id, value, selected: false },
+  }),
+  selectColor: (id) => ({
+    type: ACTION_TYPE.SELECT_COLOR,
+    payload: id,
+  }),
+  deleteColor: (id) => ({ type: ACTION_TYPE.DELETE_COLOR, payload: id }),
 };
 
 export const addTodo = (todo, category, color, dispatch) => {
@@ -49,4 +63,14 @@ export const selectCategory = (category, dispatch) => {
 };
 export const deleteCategory = (id, dispatch) => {
   dispatch(ACTION_CREATOR.deleteCategory(id));
+};
+
+export const addColor = (color, dispatch) => {
+  dispatch(ACTION_CREATOR.addColor(color));
+};
+export const selectolory = (color, dispatch) => {
+  dispatch(ACTION_CREATOR.selectColor(color));
+};
+export const deleteColor = (id, dispatch) => {
+  dispatch(ACTION_CREATOR.deleteColor(id));
 };

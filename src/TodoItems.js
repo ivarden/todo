@@ -1,62 +1,50 @@
 import React, { useContext } from "react";
-import { todoContext } from "./todoContext";
+import { TodoContext } from "./TodoContext";
+import Icon from "./components/Icon";
 import styles from "./TodoItems.module.scss";
 
-const TodoItem = () => {
-  const {
-    selectedTodos,
-    handleToggleTodo,
-    handleDeleteTodo,
-  } = useContext(todoContext);
+const TodoItems = () => {
+  const { selectedTodos, handleToggleTodo, handleDeleteTodo } = useContext(
+    TodoContext
+  );
 
-  const clickDoneHandle = (id) => {
-    handleToggleTodo(id);
+  const clickIconHandle = (id, status) => {
+    status === "done" ? handleToggleTodo(id) : handleDeleteTodo(id);
   };
 
-  const clickDeleteHandler = (e, id) => {
-    e.stopPropagation();
-    handleDeleteTodo(id);
-  };
+  const backgroundColor = (todo) => ({
+    backgroundColor: todo.compleated ? "" : todo.color,
+  });
 
   return (
-    <div>
+    <>
       {selectedTodos.map((todo) => (
         <div
           key={todo.id}
           className={styles.todo__wrap}
-          style={{
-            borderColor: `${todo.compleated ? "" : todo.color}`,
-          }}
+          style={backgroundColor(todo)}
         >
-          <div
-            className={styles.todo__button_wrap}
-            style={{
-              backgroundColor: `${!todo.compleated ? todo.color : ""}`,
-            }}
-          >
-            <div
-              className={styles.todo__button}
-              onClick={(e) => clickDeleteHandler(e, todo.id)}
-            >
-              <i className="fas fa-window-close"></i>
-            </div>
-            <div
-              className={styles.todo__button}
-              onClick={() => clickDoneHandle(todo.id)}
-            >
-              <i className="far fa-check-square"></i>
-            </div>
+          <div className={styles.todo__icons} style={backgroundColor(todo)}>
+            <Icon
+              onClick={(event) => clickIconHandle(todo.id, "delete")}
+              icon="fas fa-window-close"
+            />
+            <Icon
+              onClick={(event) => clickIconHandle(todo.id, "done")}
+              icon="far fa-check-square"
+            />
           </div>
           <div
             className={`${styles.todo__text} ${
               todo.compleated && styles.todo__text_done
             }`}
+            style={backgroundColor(todo)}
           >
-            {todo.text}
+            {todo.value}
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
-export default TodoItem;
+export default TodoItems;

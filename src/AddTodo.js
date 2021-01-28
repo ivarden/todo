@@ -1,85 +1,62 @@
 import React, { useContext, useState } from "react";
-import { todoContext } from "./todoContext";
+import { TodoContext } from "./TodoContext";
+import Select from "./components/Select";
+import Input from "./components/Input";
+import Button from "./components/Button";
 import styles from "./AddTodo.module.scss";
 
 const AddTodo = () => {
   const {
     handleAddTodo,
+    colors,
     categorys,
     handleSelectedCategory,
     selectedCategory,
-  } = useContext(todoContext);
+  } = useContext(TodoContext);
 
   const [todo, setTodo] = useState("");
-  const [color, setColor] = useState("Bisque");
+  const [color, setColor] = useState("White");
 
   const handleCategoryChange = (event) => {
     handleSelectedCategory(event.target.value);
   };
 
   const handleColorChange = (event) => {
-    setColor(event.target.value);
+    const selectedColor = colors.filter(
+      (color) => Number(color.id) === Number(event.target.value)
+    );
+    setColor(selectedColor[0].value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     handleAddTodo(todo, selectedCategory, color);
     setTodo("");
-    setColor("Bisque");
+    setColor("white");
   };
-
-  const colors = [
-    { id: 1, color: "Yellow" },
-    { id: 2, color: "Orange" },
-    { id: 3, color: "OrangeRed" },
-    { id: 4, color: "Pink" },
-    { id: 5, color: "Violet" },
-    { id: 6, color: "Skyblue" },
-    { id: 7, color: "Lightgreen" },
-    { id: 8, color: "YellowGreen" },
-  ];
 
   return (
     <div className={styles.wrap}>
       <form onSubmit={handleSubmit} className={styles.wrap__form}>
-        <select value={selectedCategory.id} onChange={handleCategoryChange}>
-          {categorys.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.text}
-            </option>
-          ))}
-        </select>
+        <Select
+          value={selectedCategory.id}
+          options={categorys}
+          onChange={handleCategoryChange}
+        />
 
-        <select
-          value={color}
-          onChange={handleColorChange}
-          style={{
-            backgroundColor: `${color}`,
-          }}
-        >
-          <option key="default" value="Bisque">
-            Bisque
-          </option>
-          {colors.map((color_) => (
-            <option key={color_.id} value={color_.color}>
-              {color_.color}
-            </option>
-          ))}
-        </select>
+        <Select value={color} options={colors} onChange={handleColorChange} />
 
-        <input
+        <Input
           type="text"
           name="todo"
           placeholder="add new todo"
           value={todo}
-          onChange={(e) => {
-            setTodo(e.target.value);
+          onChange={(event) => {
+            setTodo(event.target.value);
           }}
         />
 
-        <button type="submit" disabled={todo.length < 2}>
-          Add
-        </button>
+        <Button title="Add" text={todo} />
       </form>
     </div>
   );

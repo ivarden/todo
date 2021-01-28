@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { todoContext } from "./todoContext";
+import { TodoContext } from "./TodoContext";
 import styles from "./CategoryItems.module.scss";
 
 const CategoryItems = () => {
@@ -8,18 +8,22 @@ const CategoryItems = () => {
     categorys,
     handleSelectedCategory,
     handleDeleteCategory,
-  } = useContext(todoContext);
+  } = useContext(TodoContext);
 
   const DeleteCategory = ({ id }) => {
     const todos_ = todos.filter((todo) => todo.category.id === id).length;
 
     if (id === 1 || todos_) {
-      return <div className={styles.category__count}>{id === 1 ? todos.length : todos_}</div>;
+      return (
+        <div className={styles.category__count}>
+          {id === 1 ? todos.length : todos_}
+        </div>
+      );
     } else {
       return (
         <div
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={(event) => {
+            event.stopPropagation();
             handleDeleteCategory(id);
           }}
           className={styles.category__button}
@@ -42,7 +46,7 @@ const CategoryItems = () => {
           }
           key={category.id}
         >
-          <div className={styles.category__text}>{category.text}</div>
+          <div className={styles.category__text}>{category.value}</div>
           <DeleteCategory id={category.id} />
         </div>
       ))}

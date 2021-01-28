@@ -4,10 +4,8 @@
     justify-content: space-between;
     margin-bottom: 5px;
 
-    & input,
-    select,
-    button {
-      padding: 5px;
+    & select {
+      padding: 10px 5px;
       min-height: 25px;
       margin-right: 5px;
     }
@@ -15,20 +13,6 @@
     & select {
       cursor: pointer;
       min-height: 25px;
-    }
-
-    & input {
-      padding: 5px;
-      min-height: 25px;
-      flex: 1 1 80%;
-    }
-
-    & button {
-      padding: 5px;
-      flex: 1 0 20%;
-      margin-right: 0;
-      font-weight: bold;
-      cursor: pointer;
     }
 
     @media (max-width: 500px) {
@@ -44,24 +28,6 @@
         margin-top: 2px;
         box-sizing: border-box;
         background-color: white;
-      }
-
-      & input {
-        padding: 5px;
-        flex: 1 1 70%;
-        margin-right: 1px;
-        margin-bottom: 2px;
-        height: 40px;
-        border: 1px solid black;
-        box-sizing: border-box;
-        background-color: white;
-      }
-
-      & button {
-        flex: 1 0 10%;
-        margin-right: 0;
-        cursor: pointer;
-        height: 40px;
       }
     }
   }

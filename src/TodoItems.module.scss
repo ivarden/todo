@@ -1,43 +1,33 @@
 .todo {
   &__wrap {
     display: flex;
-    margin-bottom: 4px;
+    align-items: stretch;
     justify-content: space-between;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgray;
   }
 
   &__text {
     align-self: center;
-    padding: 5px 5px 5px 0;
     width: 100%;
+    padding: 10px 10px;
     &_done {
+      height: 100%;
       text-decoration: line-through;
+      
     }
   }
 
-  &__button {
-    box-sizing: border-box;
-    & i {
-      font-size: 20px;
-      cursor: pointer;
-      &:hover {
-        transition: 0.5s;
-        font-size: 18px;
-      }
-    }
-    &_wrap {
-      display: flex;
-      flex-shrink: 0;
-      justify-content: space-between;
-      align-items: center;
-      width: 50px;
-      padding: 10px;
-      margin-right: 10px;
-      background-color: lightgrey;
-      @media (max-width: 500px) {
-        width: 60px;
-        padding: 10px 15px;
-      }
+  &__icons {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 50px;
+    padding: 10px;
+    background-color: lightgrey;
+    @media (max-width: 500px) {
+      width: 60px;
+      padding: 10px 15px;
     }
   }
 }

@@ -1,0 +1,14 @@
+.btn {
+  display:block;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  background-color: #0066ff;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: tomato;
+  }
+}

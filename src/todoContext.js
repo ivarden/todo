@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useState, useCallback } from "react";
-import { todoReducer, categoryReducer } from "./todoRedusers";
-import { initialState } from "./todoStore";
+import { todoReducer, categoryReducer, colorReducer } from "./todoRedusers";
+import { initialState } from "./todoInitialState";
 import {
   addTodo,
   toggleTodo,
@@ -10,13 +10,17 @@ import {
   deleteCategory,
 } from "./todoActions";
 
-export const todoContext = React.createContext({});
+export const TodoContext = React.createContext({});
 
 const TodoContextProvider = ({ children }) => {
   const [todos, dispatchTodo] = useReducer(todoReducer, initialState.todos);
   const [categorys, dispatchCategory] = useReducer(
     categoryReducer,
     initialState.categorys
+  );
+  const [colors, dispatchColors] = useReducer(
+    colorReducer,
+    initialState.colors
   );
 
   const [selectedCategory, setSelectedCategory] = useState(categorys[0]);
@@ -78,15 +82,21 @@ const TodoContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(
       "todoApp",
-      JSON.stringify({ categorys: categorys, todos: todos })
+      JSON.stringify({
+        categorys: categorys,
+        todos: todos,
+        selectCategory: selectedCategory,
+        colors: colors,
+      })
     );
     selectedCategoryAndTodos();
-  }, [todos, categorys, selectedCategoryAndTodos]);
+  }, [todos, categorys, selectedCategory, colors, selectedCategoryAndTodos]);
 
   return (
-    <todoContext.Provider
+    <TodoContext.Provider
       value={{
         todos,
+        colors,
         categorys,
         selectedTodos,
         selectedCategory,
@@ -99,7 +109,7 @@ const TodoContextProvider = ({ children }) => {
       }}
     >
       {children}
-    </todoContext.Provider>
+    </TodoContext.Provider>
   );
 };
 
