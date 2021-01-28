@@ -68,7 +68,7 @@ export const deleteCategory = (id, dispatch) => {
 export const addColor = (color, dispatch) => {
   dispatch(ACTION_CREATOR.addColor(color));
 };
-export const selectolory = (color, dispatch) => {
+export const selectColory = (color, dispatch) => {
   dispatch(ACTION_CREATOR.selectColor(color));
 };
 export const deleteColor = (id, dispatch) => {

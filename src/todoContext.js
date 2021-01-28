@@ -8,6 +8,7 @@ import {
   addCategory,
   selectCategory,
   deleteCategory,
+  selectColory,
 } from "./todoActions";
 
 export const TodoContext = React.createContext({});
@@ -61,6 +62,10 @@ const TodoContextProvider = ({ children }) => {
     (id) => deleteTodo(id, dispatchTodo),
     []
   );
+  const handleSelectColor = useCallback(
+    (id) => selectColory(id, dispatchColors),
+    []
+  );
 
   const selectedCategoryAndTodos = useCallback(() => {
     const activeCategory = categorys.filter(
@@ -106,6 +111,7 @@ const TodoContextProvider = ({ children }) => {
         handleAddCategory,
         handleSelectedCategory,
         handleDeleteCategory,
+        handleSelectColor,
       }}
     >
       {children}
