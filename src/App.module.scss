@@ -1,6 +1,7 @@
 .wrap {
   display: flex;
   padding: 5px;
+  min-height: 100vh;
   
   &__category {
     flex: 1 0 30%;
