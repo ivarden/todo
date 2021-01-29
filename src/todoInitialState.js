@@ -2,7 +2,7 @@ export const initialState = localStorage.todoApp
   ? JSON.parse(localStorage.todoApp)
   : {
       todos: [],
-      categorys: [{ id: 1, value: "All Todos", color: "", selected: true }],
+      categories: [{ id: 1, value: "All Todos", color: "", selected: true }],
       selected_category: null,
       colors: [
         { id: 1, value: "White", selected: false },

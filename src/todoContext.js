@@ -15,16 +15,16 @@ export const TodoContext = React.createContext({});
 
 const TodoContextProvider = ({ children }) => {
   const [todos, dispatchTodo] = useReducer(todoReducer, initialState.todos);
-  const [categorys, dispatchCategory] = useReducer(
+  const [categories, dispatchCategory] = useReducer(
     categoryReducer,
-    initialState.categorys
+    initialState.categories
   );
   const [colors, dispatchColors] = useReducer(
     colorReducer,
     initialState.colors
   );
 
-  const [selectedCategory, setSelectedCategory] = useState(categorys[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [selectedTodos, setSelectedTodos] = useState(todos);
 
   const handleSelectedCategory = useCallback((id) => {
@@ -42,9 +42,9 @@ const TodoContextProvider = ({ children }) => {
   const handleDeleteCategory = useCallback(
     (id) => {
       deleteCategory(id, dispatchCategory);
-      handleSelectedCategory(categorys[0].id);
+      handleSelectedCategory(categories[0].id);
     },
-    [handleSelectedCategory, categorys]
+    [handleSelectedCategory, categories]
   );
 
   const handleAddTodo = useCallback(
@@ -68,7 +68,7 @@ const TodoContextProvider = ({ children }) => {
   );
 
   const selectedCategoryAndTodos = useCallback(() => {
-    const activeCategory = categorys.filter(
+    const activeCategory = categories.filter(
       (category) => category.selected === true
     )[0];
 
@@ -82,27 +82,27 @@ const TodoContextProvider = ({ children }) => {
       );
       setSelectedTodos(sortedTodos);
     }
-  }, [categorys, todos]);
+  }, [categories, todos]);
 
   useEffect(() => {
     localStorage.setItem(
       "todoApp",
       JSON.stringify({
-        categorys: categorys,
+        categories: categories,
         todos: todos,
         selectCategory: selectedCategory,
         colors: colors,
       })
     );
     selectedCategoryAndTodos();
-  }, [todos, categorys, selectedCategory, colors, selectedCategoryAndTodos]);
+  }, [todos, categories, selectedCategory, colors, selectedCategoryAndTodos]);
 
   return (
     <TodoContext.Provider
       value={{
         todos,
         colors,
-        categorys,
+        categories,
         selectedTodos,
         selectedCategory,
         handleAddTodo,

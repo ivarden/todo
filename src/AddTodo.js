@@ -9,7 +9,7 @@ const AddTodo = () => {
   const {
     handleAddTodo,
     colors,
-    categorys,
+    categories,
     handleSelectedCategory,
     selectedCategory,
   } = useContext(TodoContext);
@@ -40,7 +40,7 @@ const AddTodo = () => {
       <form onSubmit={handleSubmit} className={styles.wrap__form}>
         <Select
           value={selectedCategory.id}
-          options={categorys}
+          options={categories}
           onChange={handleCategoryChange}
         />
 

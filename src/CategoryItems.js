@@ -5,7 +5,7 @@ import styles from "./CategoryItems.module.scss";
 const CategoryItems = () => {
   const {
     todos,
-    categorys,
+    categories,
     handleSelectedCategory,
     handleDeleteCategory,
   } = useContext(TodoContext);
@@ -36,7 +36,7 @@ const CategoryItems = () => {
 
   return (
     <div className={styles.wrap}>
-      {categorys.map((category) => (
+      {categories.map((category) => (
         <div
           onClick={() => handleSelectedCategory(category.id)}
           className={
