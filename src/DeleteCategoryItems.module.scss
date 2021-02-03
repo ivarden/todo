@@ -1,0 +1,21 @@
+.category {
+  &__button {
+    box-sizing: border-box;
+    min-height: 22px;
+    & i {
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        transition: 0.5s;
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__count {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0 6px;
+    font-size: 15px;
+  }
+}

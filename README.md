@@ -1,5 +1,5 @@
 
-# TODO :)
+# TODO - the app is in a progress :)
 
 [DEMO LINK](https://todo-phi-eight.vercel.app/)
 

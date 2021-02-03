@@ -1,38 +1,10 @@
 import React, { useContext } from "react";
 import { TodoContext } from "./TodoContext";
+import DeleteCategoryItem from "./DeleteCategoryItem";
 import styles from "./CategoryItems.module.scss";
 
 const CategoryItems = () => {
-  const {
-    todos,
-    categories,
-    handleSelectedCategory,
-    handleDeleteCategory,
-  } = useContext(TodoContext);
-
-  const DeleteCategory = ({ id }) => {
-    const todos_ = todos.filter((todo) => todo.category.id === id).length;
-
-    if (id === 1 || todos_) {
-      return (
-        <div className={styles.category__count}>
-          {id === 1 ? todos.length : todos_}
-        </div>
-      );
-    } else {
-      return (
-        <div
-          onClick={(event) => {
-            event.stopPropagation();
-            handleDeleteCategory(id);
-          }}
-          className={styles.category__button}
-        >
-          <i className="far fa-window-close"></i>
-        </div>
-      );
-    }
-  };
+  const { categories, handleSelectedCategory } = useContext(TodoContext);
 
   return (
     <div className={styles.wrap}>
@@ -47,7 +19,7 @@ const CategoryItems = () => {
           key={category.id}
         >
           <div className={styles.category__text}>{category.value}</div>
-          <DeleteCategory id={category.id} />
+          <DeleteCategoryItem id={category.id} />
         </div>
       ))}
     </div>
